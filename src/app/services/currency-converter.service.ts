@@ -10,7 +10,7 @@ import { AvailableCurrencyModel } from '../models/available-currency-converter.m
 })
 export class CurrencyConverterService {
   // base_url = "http://localhost:3000/";
-  base_url = "https://currencyconverterbackend.vercel.app/";
+  base_url = "https://currency-converter-backend-tau.vercel.app/currency/convert";
 
   constructor(
     private http: HttpClient
