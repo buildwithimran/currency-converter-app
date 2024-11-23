@@ -1,0 +1,61 @@
+<div class="main">
+
+  <div class="container">
+
+    <h1 class="text-center">History</h1>
+    <div class="table-container table-responsive" *ngIf="dataSource.data.length > 0">
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+        <!-- ID Column -->
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let element">{{ element._id }}</td>
+        </ng-container>
+
+        <!-- Base Currency Column -->
+        <ng-container matColumnDef="baseCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Base Currency</th>
+          <td mat-cell *matCellDef="let element">{{ element.baseCurrency }}</td>
+        </ng-container>
+
+        <!-- Target Currency Column -->
+        <ng-container matColumnDef="targetCurrency">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Target Currency</th>
+          <td mat-cell *matCellDef="let element">{{ element.targetCurrency }}</td>
+        </ng-container>
+
+        <!-- Amount Column -->
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Amount</th>
+          <td mat-cell *matCellDef="let element">{{ element.amount }}</td>
+        </ng-container>
+
+        <!-- Conversion Rate Column -->
+        <ng-container matColumnDef="conversionRate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Conversion Rate</th>
+          <td mat-cell *matCellDef="let element">{{ element.conversionRate }}</td>
+        </ng-container>
+
+        <!-- Total Column -->
+        <ng-container matColumnDef="Total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Total</th>
+          <td mat-cell *matCellDef="let element">{{ element.conversionRate*element.amount }}</td>
+        </ng-container>
+
+        <!-- Last Updated Column -->
+        <ng-container matColumnDef="Create At">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Updated</th>
+          <td mat-cell *matCellDef="let element">{{ element.lastUpdated | date:'medium' }}</td>
+        </ng-container>
+
+        <!-- Table Headers and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <p class="no-history" *ngIf="dataSource.data.length <= 0">
+      No History Available
+    </p>
+  </div>
+
+</div>

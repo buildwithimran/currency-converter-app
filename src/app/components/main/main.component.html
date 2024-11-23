@@ -1,0 +1,59 @@
+<div class="row main">
+  <div class="container">
+    <h1 class="header">Currency Converter</h1>
+    
+    <!-- Form with formGroup -->
+    <form [formGroup]="currencyForm" (ngSubmit)="convert()">
+    
+      <!-- Currency Selection Row -->
+      <div class="row" [formGroup]="currencyForm">
+        <mat-form-field appearance="outline" class="currency-field">
+          <mat-label>From Currency</mat-label>
+          <mat-select formControlName="baseCurrency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{currency.code}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline" class="currency-field">
+          <mat-label>To Currency</mat-label>
+          <mat-select formControlName="targetCurrency">
+            <mat-option *ngFor="let currency of currencies" [value]="currency.code">{{currency.code}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    
+      <!-- Amount Input Row -->
+      <div class="row">
+        <mat-form-field appearance="outline" class="amount-field">
+          <mat-label>Amount</mat-label>
+          <input matInput formControlName="amount" type="number" placeholder="Enter amount" />
+        </mat-form-field>
+      </div>
+  
+      <div class="row" *ngIf="createdRecord">
+        <div class="col-md-12">
+          <p>
+            1 {{createdRecord.baseCurrency}} to {{createdRecord.targetCurrency}} = {{createdRecord.conversionRate}}
+          </p>
+  
+          <p>
+            {{createdRecord.amount}} {{createdRecord.baseCurrency}} to {{createdRecord.targetCurrency}} = {{createdRecord.amount*createdRecord.conversionRate}}
+          </p>
+        </div>
+      </div>
+    
+      <!-- Convert Button & Loader -->
+      <div class="row actions">
+        <button mat-raised-button type="submit" color="primary" class="convert-button" [disabled]="currencyForm.invalid || isLoading">
+          {{ isLoading ? '' : 'Convert' }}
+          <mat-spinner class="loader" *ngIf="isLoading"></mat-spinner>
+        </button>
+      </div>
+    
+    </form>
+
+    <p class="currency-records">Currency records,  <a (click)="navigateToHistory()" >click here</a></p>
+  </div>
+
+</div>
+
