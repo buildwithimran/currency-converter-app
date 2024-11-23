@@ -9,8 +9,8 @@ import { AvailableCurrencyModel } from '../models/available-currency-converter.m
   providedIn: 'root'
 })
 export class CurrencyConverterService {
-  base_url = "http://localhost:3000/";
-  // base_url = "https://currency-converter-backend-taupe.vercel.app/";
+  // base_url = "http://localhost:3000/";
+  base_url = "https://currencyconverterbackend.vercel.app/";
 
   constructor(
     private http: HttpClient
@@ -23,9 +23,9 @@ export class CurrencyConverterService {
   getAvailableCurrencies(): Observable<AvailableCurrencyModel[]> {
     return this.http.get<AvailableCurrencyModel[]>(`${this.base_url}currency/getAvailableCurrencies`);
   }
-  
+
   getCurrencyRecords(): Observable<CurrencyGetModel[]> {
     return this.http.get<CurrencyGetModel[]>(`${this.base_url}currency/getHistory`);
   }
- 
+
 }
